@@ -1,19 +1,17 @@
 body{
-  background: url("image.jpg") center scroll;
+  background: url("static/image/image.jpg") center scroll;
 	background-size: cover;
 	text-align: center;
 	font-family: 'Righteous', cursive;
 }
 
 #label{
-  	/*display: inline-flex;*/
   	margin: auto;
   	font-size: :72px;
   	font-weight: 900;
   	width: 100%;
     text-align: center;
   	justify-content: space-between;
-  	/*overflow: hidden;*/
     position: absolute;
     top: 35%;
   }

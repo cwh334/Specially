@@ -20,7 +20,9 @@ def submit():
 	result +=  ("Content-Type: text/html\r\n\r\n")
 	result +=  ( "<html>\n<head>")
 	result +=  ( "<title>appointment database</title>")
-	result +=  ('<link rel="stylesheet" href="style.css">')
+
+	result +=  ('<link rel="stylesheet" href="static/css/style.css">')
+
 	result += ("</head>")
 	result +=  ( "<body>")
 
@@ -42,7 +44,8 @@ def submit():
 	account_sid = env.str('ACCOUNT_SID')
 	auth_token = env.str('AUTH_TOKEN')
 
-	result += ','.join([number, str(datetime), occasion, message, giphyurl])
+	# result += ','.join([number, str(datetime), occasion, message, giphyurl])
+	result += ("<div id="label"><h1>SPECIAL.LY</h1><div><label>Thank You !!!!</label><br><label>We will send it to your beloved ONE !!!</label><br></div></div><div id="footer"><footer>Copyright &copy; HackNY Fall 2017</footer><br></div>")
 
 	def sendMessage(recipient, msg = "", gif = ""):
 		# param: strings
@@ -79,11 +82,3 @@ def submit():
 	result += ("</body>")
 	result += ("</html>")
 	return result
-
-
-
-
-
-
-
-print("</body>")
