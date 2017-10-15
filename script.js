@@ -1,7 +1,8 @@
 var apiKey = "JRBjYMHeZm8FEz7guTXEIQuyQygFGgDf",
 	paths = ["/v1/gifs/search"],
 	lock = true,
-	selected = null;              
+	selected = null,
+	limit = 3;              
 function onGifInput (evt, data) {
 	var that = this;
 	lock = true;
@@ -13,7 +14,8 @@ function onGifInput (evt, data) {
 function requestGifs(query) {
 	var reqParams = {
 			api_key: apiKey,
-			q: query
+			q: query,
+			limit: 3,
 		},
 		xhr = $.get("http://api.giphy.com" + paths[0] + "?" + $.param(reqParams));
 	xhr.done(function (res) {
