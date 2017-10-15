@@ -17,11 +17,10 @@ def submit():
 
 	cgitb.enable()
 
-	result +=  ("Content-Type: text/html\r\n\r\n")
 	result +=  ( "<html>\n<head>")
 	result +=  ( "<title>appointment database</title>")
-
-	result +=  ('<link rel="stylesheet" href="static/css/style.css">')
+	result += ('<link href="https://fonts.googleapis.com/css?family=Bevan|Righteous" rel="stylesheet">')
+	result +=  ('<link rel="stylesheet" href="static/css/thankyou.css">')
 
 	result += ("</head>")
 	result +=  ( "<body>")
