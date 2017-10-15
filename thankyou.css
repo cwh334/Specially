@@ -1,0 +1,31 @@
+body{
+  background: url("image.jpg") center scroll;
+	background-size: cover;
+	text-align: center;
+	font-family: 'Righteous', cursive;
+}
+
+#label{
+  	/*display: inline-flex;*/
+  	margin: auto;
+  	font-size: :72px;
+  	font-weight: 900;
+  	width: 100%;
+    text-align: center;
+  	justify-content: space-between;
+  	/*overflow: hidden;*/
+    position: absolute;
+    top: 35%;
+  }
+
+#footer{
+  	clear:both;
+    margin: auto;
+  	text-align: center;
+  	position: absolute;
+  	font-size: 15px;
+  	width: 100px;
+  	height: 100px;
+    bottom: 50px;
+    left: 47vw;
+  }
