@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <style>
+        body {
+            text-align: center;
+        }
+        .dark-background {
+            background-color: #3498db !important;
+        }
+        #navigation {
+            display: inline-flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+        #navigation p {
+            margin: 0 15%;
+            font-size: 72px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        #gif-display {
+            display: inline-flex;
+            /* justify-content: space-around; */
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        #gif-display img {
+            padding: 7.5px;
+            margin: 7.5px;
+            border-radius: 10%;
+            transition: background-color 0.25s;
+        }
+        #gif-display img:hover {
+            background-color: #99cbed;
+        }
+    </style>
+    <title>JS Bin</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        var apiKey = "JRBjYMHeZm8FEz7guTXEIQuyQygFGgDf",
+            paths = ["/v1/gifs/search"],
+            lock = true,
+            selected = null;              
+        window.onload = function() {
+            $("#gif-input").val("");
+            $("#gif-input").on("input", onGifInput);
+            $("#gif-display").on("click", "img", function(data) {
+                selected = $(data.target).attr("src");
+                $("#gif-display img").removeClass("dark-background");
+                $(this).addClass("dark-background");
+            });
+        }
+        function onGifInput (evt, data) {
+            var that = this;
+            lock = true;
+            window.setTimeout(function() {
+                requestGifs($(that).val());
+                lock = false;
+            }, 500);
+        }
+        function requestGifs(query) {
+            var reqParams = {
+                    api_key: apiKey,
+                    q: query
+                },
+                xhr = $.get("http://api.giphy.com" + paths[0] + "?" + $.param(reqParams));
+            xhr.done(function (res) {
+                displayGifs(res);
+            });
+        }
+        function displayGifs(res) {
+            $("#gif-display").html("");
+            var data = res.data;
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]) {
+                    $("#gif-display").append("<img src=" + data[i].images.fixed_height.url + ">");
+                }
+            }
+        }
+    </script>
+    <form>
+        <input id="gif-input" type="text">
+    </form>
+    <div id="navigation">
+        <p>&larr;</p>
+        <p>&rarr;</p>
+    </div>
+    <div id="gif-display"></div>
+</body>
+</html>
