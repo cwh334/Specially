@@ -3,6 +3,9 @@
 import cgi, cgitb
 import psycopg2
 from datetime import datetime as dt
+from threading import Timer
+from twilio.rest import Client
+from envparse import env
 
 cgitb.enable()
 
@@ -18,6 +21,7 @@ form = cgi.FieldStorage()
 
 number = form.getvalue('phone')
 datetime = form.getvalue('sendTime')
+datetime = dt.strptime(datetime, '%Y-%m-%dT%H:%M')
 occasion = ""
 message = ""
 giphyurl = ""
@@ -28,23 +32,39 @@ if form.getvalue('msgbox'):
 if form.getvalue('gif_url'):
 	giphyurl = form.getvalue('gif_url')
 
+env.read_envfile()
+account_sid = env.str('ACCOUNT_SID')
+auth_token = env.str('AUTH_TOKEN')
 
-datetime = dt.strptime(datetime, '%Y-%m-%dT%H:%M').strftime('%Y-%m-%d %H:%M:%S')
+def sendMessage(recipient, msg = "", gif = ""):
+	# param: strings
+	# must enter either msg or gif or both
+	client = Client(account_sid, auth_token)
 
-hostname = 'localhost'
-username = 'alice'
-password = ''
-database = 'specially'
+	if msg == "": 
+		message = client.messages.create(
+		        recipient,
+		        from_ = "+12013477040",
+		        media_url = gif)
+	elif gif == "":
+		message = client.messages.create(
+		        recipient,
+		        body = msg,
+		        from_ = "+12013477040")
+	else: 
+		message = client.messages.create(
+		        recipient,
+		        body = msg,
+		        from_ = "+12013477040",
+		        media_url = gif)
 
-def doQuery(conn):
-	cur = conn.cursor()
-	string = "(" + number + ", " + datetime + ", " + occasion + ", " + message + ", " + giphyurl + ")"
-	cur.execute( "INSERT INTO specially (number, datetime, occasion, message, giphyurl) VALUES" + string)
-	print(string)
+x = dt.today()
+y = datetime
+delta_t = y - x
+secs = delta_t.seconds + 1
 
-connection = psycopg2.connect( host=hostname, user=username, password=password, dbname=database )
-doQuery( connection )
-connection.close()
+timer = Timer(secs, sendMessage, [number, message, giphyurl])
+timer.start()
 
 print("</body>")
 print("</html>")
