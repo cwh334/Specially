@@ -4,10 +4,10 @@ var apiKey = "JRBjYMHeZm8FEz7guTXEIQuyQygFGgDf",
 	selected = null,
 	limit = 3;
 
-function onGifInput(str) {
+function onGifInput() {
 	lock = true;
 	window.setTimeout(function () {
-		requestGifs(str);
+		requestGifs($("#gif-input").val());
 		lock = false;
 	}, 500);
 }
@@ -37,12 +37,11 @@ function displayGifs(res) {
 window.onload = function () {
 	$("#msgbox").on("input", function (evt) {
 		$("#gif-input").val("");
-		var val = $("#gif-input").val()
-		val = val.slice(val.indexOf("|"));
-		$("#gif-input").val(val + $(evt.target).val());
-		onGifInput($("#gif-input").val());
+		$("#gif-input").val($("#occasion").val() + " " + $(evt.target).val());
+		onGifInput();
 	});
-	$("#gif-input").val("|birthday dog").trigger("input");
+	$("#gif-input").val("birthday dog");
+	onGifInput();
 	$("#gif-display").on("click", "img", function (data) {
 		selected = $(data.target).attr("src");
 		$("#gif-display img").removeClass("dark-background");
@@ -51,7 +50,8 @@ window.onload = function () {
 	});
 	$("#occasion").on("change", function (evt) {
 		selected = evt.target.value;
-		$("#gif-input").val(selected + "|" + $("#msgbox").val());
+		$("#gif-input").val(selected + " " + $("#msgbox").val());
+		onGifInput();
 	});
 	$("msgbox").on("input", function (evt, data) {
 

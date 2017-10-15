@@ -9,7 +9,7 @@
 	<link href="{{ url_for('.static', filename='css/style.css') }}" rel="stylesheet">
 
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-	<script src="{{ url_for('.static', filename='js/script.js') }}"></script>
+	<!-- <script src="{{ url_for('.static', filename='js/script.js') }}"></script> -->
 </head>
 <body>
 	<h1>SPECIAL.LY</h1>
@@ -35,8 +35,11 @@
 			<textarea name="msgbox" id="msgbox" cols="50" rows="10" placeholder="Type your message here."></textarea>
 		</div>
 		<div class="giphy">
-			<label for="url">giphy</label><br>
-			<input id="gif-input" name="gif-input" type="text" placeholder="Search all the GIFs... and stickers!">
+			<div style="display: none;">
+
+				<label for="url">giphy</label><br>
+				<input id="gif-input" name="gif-input" type="text" placeholder="Search all the GIFs... and stickers!">
+			</div>
 
 			<div id="gif-display">
 			</div>
