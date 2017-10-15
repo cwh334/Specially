@@ -1,29 +1,50 @@
 #!/usr/local/bin/python3
-import cgi
-import cgitb
+
+import cgi, cgitb
+import psycopg2
+from datetime import datetime as dt
 
 cgitb.enable()
 
 print ("Content-Type: text/html\r\n\r\n")
 print ( "<html>\n<head>")
-print ( "<title>sqlite selection</title>")
+print ( "<title>appointment database</title>")
 print ('<link rel="stylesheet" href="style.css">')
 print("</head>")
 print ( "<body>")
 
-
+# Create instance of FieldStorage 
 form = cgi.FieldStorage()
 
-sendTime = form.getvalue('sendTime')
-print(sendTime)
-phone = form.getvalue('phone')
-print(phone)
-msgbox = form.getvalue('msgbox')
-print(msgbox)
-url = form.getvalue('url')
-print(url)
+number = form.getvalue('phone')
+datetime = form.getvalue('sendTime')
+occasion = ""
+message = ""
+giphyurl = ""
+if form.getvalue('occasion'):
+	occasion = form.getvalue('occasion')
+if form.getvalue('msgbox'):
+	message = form.getvalue('msgbox')
+if form.getvalue('gif_url'):
+	giphyurl = form.getvalue('gif_url')
 
-print("<p>Your message will be sent on 2017/10/15</p>")
+datetime = dt.strptime(datetime, '%Y-%m-%dT%H:%M').strftime('%Y-%m-%d %H:%M:%S')
+# datetime = dt.strftime(date_obj, '%Y-%m-%d %H:%M:%S')
+
+hostname = 'localhost'
+username = 'alice'
+password = ''
+database = 'specially'
+
+def doQuery(conn):
+	cur = conn.cursor()
+	string = "(" + number + ", " + datetime + ", " + occasion + ", " + message + ", " + giphyurl + ")"
+	cur.execute( "INSERT INTO specially (number, datetime, occasion, message, giphyurl) VALUES" + string)
+	print(string)
+
+connection = psycopg2.connect( host=hostname, user=username, password=password, dbname=database )
+doQuery( connection )
+connection.close()
 
 print("</body>")
 print("</html>")
