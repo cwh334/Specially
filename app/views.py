@@ -45,7 +45,7 @@ def submit():
 	auth_token = env.str('AUTH_TOKEN')
 
 	# result += ','.join([number, str(datetime), occasion, message, giphyurl])
-	result += ("<div id="label"><h1>SPECIAL.LY</h1><div><label>Thank You !!!!</label><br><label>We will send it to your beloved ONE !!!</label><br></div></div><div id="footer"><footer>Copyright &copy; HackNY Fall 2017</footer><br></div>")
+	result += ('<div id="label"><h1>SPECIAL.LY</h1><div><label>Thank You !!!!</label><br><label>We will send it to your beloved ONE !!!</label><br></div></div><div id="footer"><footer>Copyright &copy; HackNY Fall 2017</footer><br></div>')
 
 	def sendMessage(recipient, msg = "", gif = ""):
 		# param: strings
