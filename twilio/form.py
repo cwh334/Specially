@@ -1,0 +1,46 @@
+#!/usr/local/bin/python3
+
+import cgi, cgitb
+import psycopg2
+
+cgitb.enable()
+
+print ("Content-Type: text/html\r\n\r\n")
+print ( "<html>\n<head>")
+print ( "<title>appointment database</title>")
+print ('<link rel="stylesheet" href="style.css">')
+print("</head>")
+print ( "<body>")
+
+# Create instance of FieldStorage 
+form = cgi.FieldStorage()
+
+number = form.getvalue('phone')
+datetime = form.getvalue('sendTime')
+occasion = ""
+message = ""
+giphyurl = ""
+if form.getvalue('occasion'):
+	occasion = form.getvalue('occasion')
+if form.getvalue('msgbox'):
+	message = form.getvalue('msgbox')
+if form.getvalue('gif_url'):
+	giphyurl = form.getvalue('gif_url')
+
+hostname = 'http://cbb890fa.ngrok.io'
+username = ''
+password = ''
+database = 'specially'
+
+def doQuery(conn):
+	cur = conn.cursor()
+	string = "(" + number + ", " + datetime + ", " + occasion + ", " + message + ", " + giphyurl + ")"
+	cur.execute( "INSERT INTO specially (number, datetime, occasion, message, giphyurl) VALUES" + string)
+	print string
+
+connection = psycopg2.connect( host=hostname, user=username, password=password, dbname=database )
+doQuery( connection )
+connection.close()
+
+print("</body>")
+print("</html>")
