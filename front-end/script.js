@@ -33,12 +33,19 @@ function displayGifs(res) {
 }
 
 window.onload = function() {
-	$("#gif-input").val("");
 	$("#gif-input").on("input", onGifInput);
+	$("#gif-input").val("birthday dog").trigger("input");
 	$("#gif-display").on("click", "img", function(data) {
 		selected = $(data.target).attr("src");
-		console.log(selected);
 		$("#gif-display img").removeClass("dark-background");
 		$(this).addClass("dark-background");
+		$("#url").val(selected);
+	});
+	$("#occasion").on("change", function(evt, data) {
+		selected = evt.target.value;
+		$("#gif-input").val(selected).trigger("input");
+	});
+	$("msgbox").on("input", function(evt, data) {
+
 	});
 }

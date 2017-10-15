@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Special.ly</title>
+	<link href="https://fonts.googleapis.com/css?family=Bevan|Righteous" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script src="script.js"></script>
+</head>
+<body>
+	<h1>SPECIAL.LY</h1>
+	<form name="speciallyForm" method="POST" action="form.py">
+		<div>
+			<span>Reservation (date and time):</span>
+			<input type="datetime-local" name="sendTime" id="sendTime" required min="2017-10-15T00:00" value="2017-10-15T12:45" style="font-family: Arial;">
+		</div>
+		<div>
+			<span>Phone number:</span>
+			<input type="tel" name="phone" id="phone" placeholder="+19175136353" required pattern="\+[0-9]{11}">
+		</div>
+		<div>
+			<label for="occasion">Occasion</label>
+			<select name="occasion" id="occasion">
+				<option value="Birthday">Birthday</option>
+				<option value="Anniversary">Anniversary</option>
+				<option value="Beer-night">Beer Night</option>
+			</select>
+		</div>
+		<div>
+			<label for="msgbox">Message:</label>
+			<textarea name="msgbox" id="msgbox" cols="50" rows="10" placeholder="Type your message here."></textarea>
+		</div>
+		<div class="giphy">
+			<label for="url">giphy</label>
+			<input id="gif-input" name="gif-input" type="text" placeholder="Search all the GIFs... and stickers!">
+
+			<div id="gif-display">
+			</div>
+			<input id="url" name="url" style="display: none;" type="text"></input>
+		</div>
+		<input type="submit" value="SUBMIT">
+	</form>
+	<footer>Copyright &copy; HackNY Fall 2017</footer>
+
+<!-- 
+sendTime
+phone
+msgbox
+url
+ -->
+
+
+</body>
+</html>

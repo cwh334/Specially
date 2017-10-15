@@ -13,8 +13,15 @@ print ( "<body>")
 
 
 form = cgi.FieldStorage()
+
+sendTime = form.getvalue('sendTime')
+print(sendTime)
 phone = form.getvalue('phone')
 print(phone)
+msgbox = form.getvalue('msgbox')
+print(msgbox)
+url = form.getvalue('url')
+print(url)
 
 print("<p>Your message will be sent on 2017/10/15</p>")
 
