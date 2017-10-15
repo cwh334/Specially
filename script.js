@@ -15,7 +15,7 @@ function requestGifs(query) {
 	var reqParams = {
 			api_key: apiKey,
 			q: query,
-			limit = 3,
+			limit: 3,
 		},
 		xhr = $.get("http://api.giphy.com" + paths[0] + "?" + $.param(reqParams));
 	xhr.done(function (res) {
