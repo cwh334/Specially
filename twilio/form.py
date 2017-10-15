@@ -28,7 +28,7 @@ if form.getvalue('gif_url'):
 	giphyurl = form.getvalue('gif_url')
 
 hostname = 'http://cbb890fa.ngrok.io'
-username = ''
+username = 'alice'
 password = ''
 database = 'specially'
 
