@@ -2,6 +2,7 @@
 
 import cgi, cgitb
 import psycopg2
+from datetime import datetime as dt
 
 cgitb.enable()
 
@@ -27,6 +28,9 @@ if form.getvalue('msgbox'):
 if form.getvalue('gif_url'):
 	giphyurl = form.getvalue('gif_url')
 
+date_obj = dt.strptime(datetime, '%Y-%m-%d %H:%M:%S')
+datetime = date_obj
+
 hostname = 'http://cbb890fa.ngrok.io'
 username = 'alice'
 password = ''
@@ -36,7 +40,7 @@ def doQuery(conn):
 	cur = conn.cursor()
 	string = "(" + number + ", " + datetime + ", " + occasion + ", " + message + ", " + giphyurl + ")"
 	cur.execute( "INSERT INTO specially (number, datetime, occasion, message, giphyurl) VALUES" + string)
-	print string
+	print(string)
 
 connection = psycopg2.connect( host=hostname, user=username, password=password, dbname=database )
 doQuery( connection )
