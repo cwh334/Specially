@@ -6,14 +6,15 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Special.ly</title>
 	<link href="https://fonts.googleapis.com/css?family=Bevan|Righteous" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
+	<!-- <link rel="stylesheet" href="style.css"> -->
+	<link href="{{ url_for('.static', filename='css/style.css') }}" rel="stylesheet">
 
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-	<script src="script.js"></script>
+	<script src="{{ url_for('.static', filename='js/script.js') }}"></script>
 </head>
 <body>
 	<h1>SPECIAL.LY</h1>
-	<form name="speciallyForm" method="POST" action="form.py">
+	<form name="speciallyForm" method="POST" action="/submit">
 		<div>
 			<span>Reservation (date and time):</span>
 			<input type="datetime-local" name="sendTime" id="sendTime" required min="2017-10-15T00:00" value="2017-10-15T12:45" style="font-family: Arial;">
