@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Specially</title>
-
+	<link href="https://fonts.googleapis.com/css?family=Modak" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
 
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -13,7 +13,7 @@
 </head>
 <body>
 	<h1>Special.ly</h1>
-	<form name="speciallyForm" action="cgi.py" method="POST">
+	<form name="speciallyForm" method="POST" action="form.py">
 		<div>
 			<span>Reservation (date and time):</span>
 			<input type="datetime-local" name="sendTime" id="sendTime">
@@ -24,7 +24,7 @@
 		</div>
 		<div>
 			<span>Occasion</span>
-			<input type="text" id="occasion" id="occasion" placeholder="Birthday? Anniversary?">
+			<input type="text" name="occasion" id="occasion" placeholder="Birthday? Anniversary?">
 		</div>
 		<div>
 			<span>Message:</span>
