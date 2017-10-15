@@ -1,11 +1,13 @@
 from twilio.rest import Client
-import os
+from envparse import env
+
+env.read_envfile()
+account_sid = env.str('ACCOUNT_SID')
+auth_token = env.str('AUTH_TOKEN')
 
 def sendMessage(receiver, msg = "", gif = ""):
 	# param: strings
 	# must enter either msg or gif or both
-	account_sid = ""
-	auth_token = ""
 	client = Client(account_sid, auth_token)
 
 	if msg == "": 
@@ -24,5 +26,3 @@ def sendMessage(receiver, msg = "", gif = ""):
 		        body = msg,
 		        from_ = "+12013477040",
 		        media_url = gif)
-
-# sendMessage("+17186002718", "", "https://media.giphy.com/media/3oEduVGyuRGuZXaqys/giphy.gif")
