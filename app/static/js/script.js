@@ -2,15 +2,16 @@ var apiKey = "JRBjYMHeZm8FEz7guTXEIQuyQygFGgDf",
 	paths = ["/v1/gifs/search"],
 	lock = true,
 	selected = null,
-	limit = 3;              
-function onGifInput (evt, data) {
-	var that = this;
+	limit = 3;
+
+function onGifInput(str) {
 	lock = true;
-	window.setTimeout(function() {
-		requestGifs($(that).val());
+	window.setTimeout(function () {
+		requestGifs(str);
 		lock = false;
 	}, 500);
 }
+
 function requestGifs(query) {
 	var reqParams = {
 			api_key: apiKey,
@@ -22,6 +23,7 @@ function requestGifs(query) {
 		displayGifs(res);
 	});
 }
+
 function displayGifs(res) {
 	$("#gif-display").html("");
 	var data = res.data;
@@ -32,20 +34,26 @@ function displayGifs(res) {
 	}
 }
 
-window.onload = function() {
-	$("#gif-input").on("input", onGifInput);
-	$("#gif-input").val("birthday dog").trigger("input");
-	$("#gif-display").on("click", "img", function(data) {
+window.onload = function () {
+	$("#msgbox").on("input", function (evt) {
+		$("#gif-input").val("");
+		var val = $("#gif-input").val()
+		val = val.slice(val.indexOf("|"));
+		$("#gif-input").val(val + $(evt.target).val());
+		onGifInput($("#gif-input").val());
+	});
+	$("#gif-input").val("|birthday dog").trigger("input");
+	$("#gif-display").on("click", "img", function (data) {
 		selected = $(data.target).attr("src");
 		$("#gif-display img").removeClass("dark-background");
 		$(this).addClass("dark-background");
 		$("#url").val(selected);
 	});
-	$("#occasion").on("change", function(evt, data) {
+	$("#occasion").on("change", function (evt) {
 		selected = evt.target.value;
-		$("#gif-input").val(selected).trigger("input");
+		$("#gif-input").val(selected + "|" + $("#msgbox").val());
 	});
-	$("msgbox").on("input", function(evt, data) {
+	$("msgbox").on("input", function (evt, data) {
 
 	});
 }

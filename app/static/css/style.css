@@ -10,13 +10,17 @@ body {
 #main{
 	/*display: inline-flex;*/
 	margin: auto;
-	font-size: :72px;
+	font-size: 72px;
 	font-weight: 900;
 	width: 100;
 	justify-content: space-between;
-	background: rgba(3,3,3,.8)
+	background: rgba(3,3,3,.8);
 	overflow: hidden;
 	box-shadow: 10px #000;
+}
+#gif-input {
+	display: block;
+	margin: 0 auto;
 }
 input[type="submit"] {
 	margin: 0 10%;
