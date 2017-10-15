@@ -13,17 +13,17 @@
 </head>
 <body>
 	<h1>SPECIAL.LY</h1>
-	<form name="speciallyForm" method="POST" action="form.py">
+	<form id="main" name="speciallyForm" method="POST" action="form.py">
 		<div>
-			<span>Reservation (date and time):</span>
+			<label>Reservation (date and time):</label><br>
 			<input type="datetime-local" name="sendTime" id="sendTime" required min="2017-10-15T00:00" value="2017-10-15T12:45" style="font-family: Arial;">
 		</div>
 		<div>
-			<span>Phone number:</span>
+			<label>Phone number:</label><br>
 			<input type="tel" name="phone" id="phone" placeholder="+19175136353" required pattern="\+[0-9]{11}">
 		</div>
 		<div>
-			<label for="occasion">Occasion</label>
+			<label for="occasion">Occasion:</label><br>
 			<select name="occasion" id="occasion">
 				<option value="Birthday">Birthday</option>
 				<option value="Anniversary">Anniversary</option>
@@ -31,11 +31,11 @@
 			</select>
 		</div>
 		<div>
-			<label for="msgbox">Message:</label>
+			<label for="msgbox">Message:</label><br>
 			<textarea name="msgbox" id="msgbox" cols="50" rows="10" placeholder="Type your message here."></textarea>
 		</div>
 		<div class="giphy">
-			<label for="url">giphy</label>
+			<label for="url">giphy</label><br>
 			<input id="gif-input" name="gif-input" type="text" placeholder="Search all the GIFs... and stickers!">
 
 			<div id="gif-display">
@@ -44,9 +44,10 @@
 		</div>
 		<input type="submit" value="SUBMIT">
 	</form>
-	<footer>Copyright &copy; HackNY Fall 2017</footer>
+	    <div id="footer">
+	<footer>Copyright &copy; HackNY Fall 2017</footer><br>
 
-<!-- 
+<!--
 sendTime
 phone
 msgbox

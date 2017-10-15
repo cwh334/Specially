@@ -1,5 +1,5 @@
 body {
-	background: url("image.jpg") center scroll;
+	background: url("image.jpg") no-repeat center center fixed;
 	background-size: cover;
 	text-align: center;
 	font-family: 'Righteous', cursive;
@@ -7,17 +7,32 @@ body {
 .dark-background {
 	background-color: #3498db !important;
 }
-#navigation {
-	display: inline-flex;
-	width: 100%;
+#main{
+	/*display: inline-flex;*/
+	margin: auto;
+	font-size: :72px;
+	font-weight: 900;
+	width: 100;
 	justify-content: space-between;
+	background: rgba(3,3,3,.8)
+	overflow: hidden;
+	box-shadow: 10px #000;
 }
-#navigation p {
-	margin: 0 15%;
+input[type="submit"] {
+	margin: 0 10%;
 	font-size: 72px;
 	font-weight: 900;
+	width: 70px;
+	height: 70px;
+	padding: 30px;
+	margin: auto;
+	background: rgba(3,3,3,.8)
+	overflow: hidden;
+	box-shadow: 10px 10px 30px #000;
 	cursor: pointer;
+	position: absolute;
 }
+
 #gif-display {
 	display: inline-flex;
 	/* justify-content: space-around; */
@@ -42,3 +57,11 @@ h1 {
 	text-align: center;
 	font-family: 'Bevan', cursive;
 }
+#footer{
+	clear: both;
+	text-align: right;
+	position: absolute;
+	font-size: 25px;
+	margin: auto;
+	width: 280px;
+	height: 100px;
