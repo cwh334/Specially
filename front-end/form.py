@@ -28,8 +28,8 @@ if form.getvalue('msgbox'):
 if form.getvalue('gif_url'):
 	giphyurl = form.getvalue('gif_url')
 
+
 datetime = dt.strptime(datetime, '%Y-%m-%dT%H:%M').strftime('%Y-%m-%d %H:%M:%S')
-# datetime = dt.strftime(date_obj, '%Y-%m-%d %H:%M:%S')
 
 hostname = 'localhost'
 username = 'alice'
